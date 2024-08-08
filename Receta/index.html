@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 80%; 
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 1px; 
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #generatePDF, #firmarPDF {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #firmarPDF {
+            background-color: #f3385d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generar PDF</h1>
+    <pre id="result"></pre>
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th>ID_HIS</th>
+                <th>FICHAFAM</th>
+                <th>CSM</th>
+                <th>Medicamento</th>
+                <th>CAN</th>
+                <th>DOS</th>
+                <th>DUR</th>
+                <th>OBS</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button id="generatePDF">Generar PDF</button>
+    <button id="firmarPDF">Firmar PDF</button>
+    <!-- Include PDFMake library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/vfs_fonts.js"></script>
+    <!-- Include pdf-lib library -->
+    <script src="https://unpkg.com/pdf-lib@1.16.0"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          "FICHAFAM": "246815"
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow"
+        };
+
+        fetch("http://150.10.50.7:3000/consultaReceta", requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const tableBody = document.querySelector('#resultTable tbody');
+            let qrData = ''; 
+
+            data.forEach(item => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${item.ID_HIS}</td>
+                <td>${item.FICHAFAM}</td>
+                <td>${item.CSM}</td>
+                <td>${item.Medicamento}</td>
+                <td>${item.CAN}</td>
+                <td>${item.DOS}</td>
+                <td>${new Date(item.DUR).toLocaleDateString()}</td>
+                <td>${item.OBS}</td>
+              `;
+              tableBody.appendChild(row);
+              qrData += `${item.ID_HIS}\n,${item.FICHAFAM}\n,${item.CSM}\n,${item.Medicamento}\n,${item.CAN}\n,${item.DOS}\n,${item.DUR}\n,${item.OBS}\n`;
+            });
+
+            document.getElementById('generatePDF').addEventListener('click', () => {
+              const docDefinition = {
+                content: [
+                  {
+                    table: {
+                      headerRows: 1,
+                      widths: [ '*', '*', '*', '*', '*', '*', '*', '*' ], 
+                      body: [
+                        ['ID_HIS', 'FICHAFAM', 'CSM', 'Medicamento', 'CAN', 'DOS', 'DUR', 'OBS'],
+                        ...Array.from(document.querySelectorAll('#resultTable tbody tr')).map(row => 
+                          Array.from(row.children).map(cell => cell.textContent)
+                        )
+                      ]
+                    },
+                    fontSize:7
+                  },
+                  {
+                    qr: qrData, 
+                    fit: 200, 
+                    alignment: 'right',
+                    margin: [0, 300, 10, 0] 
+                  }
+                ],
+                pageSize: 'A4',
+                pageOrientation: 'landscape', 
+                pageMargins: [ 5, 5, 5, 5 ]
+              };
+
+              const now = new Date();
+              const fileName = `documento_${now.toISOString().slice(0, 19).replace(/[-:T]/g, '')}.pdf`;
+
+              pdfMake.createPdf(docDefinition).download(fileName);
+            });
+
+            document.getElementById('firmarPDF').addEventListener('click', async () => {
+              // Primero genera el PDF como antes
+              const docDefinition = {
+                content: [
+                  {
+                    table: {
+                      headerRows: 1,
+                      widths: [ '*', '*', '*', '*', '*', '*', '*', '*' ], 
+                      body: [
+                        ['ID_HIS', 'FICHAFAM', 'CSM', 'Medicamento', 'CAN', 'DOS', 'DUR', 'OBS'],
+                        ...Array.from(document.querySelectorAll('#resultTable tbody tr')).map(row => 
+                          Array.from(row.children).map(cell => cell.textContent)
+                        )
+                      ]
+                    },
+                    fontSize:7
+                  },
+                  {
+                    qr: qrData, 
+                    fit: 200, 
+                    alignment: 'right',
+                    margin: [0, 300, 10, 0] 
+                  }
+                ],
+                pageSize: 'A4',
+                pageOrientation: 'landscape', 
+                pageMargins: [ 5, 5, 5, 5 ]
+              };
+
+              const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+
+              // Convierte el PDF en un array buffer
+              pdfDocGenerator.getBuffer(async (buffer) => {
+                // Enviar el PDF al servidor para ser firmado
+                try {
+                  const response = await fetch('http://150.10.50.7:3000/signpdf', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/pdf'
+                    },
+                    body: buffer
+                  });
+
+                  if (!response.ok) {
+                    throw new Error('Error en la firma del PDF');
+                  }
+
+                  const signedPdf = await response.blob();
+
+                  // Descarga el PDF firmado
+                  const downloadLink = document.createElement('a');
+                  downloadLink.href = URL.createObjectURL(signedPdf);
+                  downloadLink.download = 'signed_document.pdf';
+                  document.body.appendChild(downloadLink);
+                  downloadLink.click();
+                  document.body.removeChild(downloadLink);
+
+                } catch (error) {
+                  console.error('Error:', error);
+                }
+              });
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+    });
+    </script>
+</body>
+</html>

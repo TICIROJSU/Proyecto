@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Programación de  Enfermería</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        /* Estilo para el borde verde en el campo HH.CC */
+        #hc {
+            border-color: green;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+
+    </div>
+
+    <div class="container-fluid mt-3" style="width:80%">
+        <h2>Seleccionar Mes y Año</h2>
+
+        <!-- Formulario para seleccionar mes y año -->
+        <form id="formFecha">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="mes">Mes:</label>
+                    <select class="form-control" id="mes" name="mes">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SETIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="año">Año:</label>
+                    <input type="number" class="form-control" id="año" name="año" min="1900" max="2100" step="1" value="2024">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="generarSemanas()">Generar Semanas</button>
+            
+        </form>
+        </form>
+
+        <div class="mt-4">
+            <h3>Detalle de Semana por Mes</h3>
+
+            <hr>
+            <br>
+            <table class="table">
+                <thead> 
+                    
+                </thead>
+                <tbody id="tablaSemanas">
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para el formulario de detalles -->
+    <div class="modal" tabindex="-1" role="dialog" id="detalleModal">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle de Programación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                     <form  id="miFormulario">
+
+             <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="seguro">TURNO</label>
+                    <select class="form-control" id="seguro" name="seguro">
+                        <option value="M">MAÑANA</option>
+                        <option value="T">TARDE</option>
+                        <option value="MT">NO DEFINIDO</option>
+                        
+                    </select>
+                </div>    
+                 <div class="form-group col-md-2">
+                    
+                </div> 
+                <div class="form-group col-md-8">
+                    <label for="Notificacion"> <i style="color: red;">Completar la siguiente información, ingresar de manera correcta la FECHA y TURNO</i> </label> 
+                </div>    
+            </div>
+            <div class="form-row">
+
+                <div class="form-group col-md-2">
+                    <label for="hc"><strong>HH.CC:</strong></label>
+                    <input type="number" class="form-control" id="hc" name="hc" onkeydown="buscarPaciente(event)">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="documento">N° DNI O C.E.:</label>
+                    <input type="text" class="form-control" id="documento" name="documento">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" class="form-control" id="nombres" name="nombres">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="seguro">Seguro:</label>
+                    <select class="form-control" id="seguro" name="seguro">
+                        <option value="seguro1">SIS</option>
+                        <option value="seguro2">COMUN</option>
+                        
+                    </select>
+                </div>    
+            </div>
+
+          
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="dia">Día:</label>
+                    <input type="date" class="form-control" id="dia" name="dia">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="edad">Edad:</label>
+                    <input type="text" class="form-control" id="edad" name="edad">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="sexo">Sexo:</label>
+                    <select class="form-control" id="sexo" name="sexo">
+                        <option value="masculino">MASCULINO</option>
+                        <option value="femenino">FEMENINO</option>
+                        <!-- Agrega otras opciones según sea necesario -->
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="ojo">Ojo:</label>
+                    <select class="form-control" id="ojo" name="ojo">
+                        <option value="OD">OJO DERECHO</option>
+                        <option value="OI">OJO IZQUIERDO</option>
+                        <option value="AO">AMBOS OJOS</option>
+                    </select>
+                </div>
+               
+                 <div class="form-group col-md-3">
+                    <label for="hc">Procedencia:</label>
+                    <input type="text" class="form-control" id="procedencia" name="procedencia">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico:</label>
+                <input type="text" class="form-control" id="diagnostico" name="diagnostico">
+            </div>
+
+            <div class="form-group">
+                <label for="cirugiaProgramada">Cirugía Programada:</label>
+                <input type="text" class="form-control" id="cirugiaProgramada" name="cirugiaProgramada">
+            </div>
+
+            <div class="form-row">
+               
+                <div class="form-group col-md-4">
+                    <label for="tipoAnestesia">Tipo de Anestesia:</label>
+                    <select class="form-control" id="tipoAnestesia" name="tipoAnestesia">
+                        <option value="general">LOCAL</option>
+                        <option value="local">SEDACION</option>
+                        <option value="local">GENERAL</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="fechaExamenes">RQx/LAB:</label>
+                    <input type="date" class="form-control" id="fechaExamenes" name="fechaExamenes">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="telefono">Celular</label>
+                    <input type="number" class="form-control" id="telefono" name="telefono">
+                </div>
+              
+            </div>
+
+             <div class="form-row">
+                <div class="form-group col-md-10">
+                    <label for="medico">Médico:</label>
+                    <select class="form-control" id="medico" name="medico">
+                        <option value="MED01">ACOSTA PRETEL ROBERTH ISAAC</option>
+                        <option value="MED02">ADRIANZÉN REYES JESÚS REHXI</option>
+                        <option value="MED03">BARBA CHIRINOS CARLOS ENRIQUE</option>
+                        <option value="MED04">BARTRA AGUINAGA ANGIE VANESSA</option>
+                        <option value="MED05">CÁCEDA SÁNCHEZ RÓMULO RICARDO</option>
+                        <option value="MED06">CALDERÓN ALARCÓN NILA ESTHER</option>
+                        <option value="MED07">CANO LUJÁN MILAGROS RUBY</option>
+                        <option value="MED08">CARBAJAL JARA YURI RAMÓN</option>
+                        <option value="MED09">CASANOVA  ROJAS FIORELA</option>
+                        <option value="MED10">CASTILLO URQUIAGA SANTOS MIRIAM</option>
+                        <option value="MED11">CASTRO AGUILAR SUSSAN TATIANA</option>
+                        <option value="MED12">CHIRINOS SALDAÑA MAGDA PATRICIA</option>
+                        <option value="MED13">COTRINA CELIS EVELYN PAOLA</option>
+                        <option value="MED14">DE LA CRUZ AMADOR EDY WILFREDO</option>
+                        <option value="MED15">ESCOBEDO SOLIS EDUARDO FRANCISCO</option>
+                        <option value="MED16">FERNÁNDEZ ORREGO JORGE LUIS</option>
+                        <option value="MED17">GUEVARA VELEZ SARA ELIZABETH</option>
+                        <option value="MED18">HUAMÁN PEREYRA JAIME HUMBERTO</option>
+                        <option value="MED19">KEMPER CASTRO NORMA ISABEL</option>
+                        <option value="MED20">MANRIQUE MESIAS MARTHA MARÍA</option>
+                        <option value="MED21">MASIAS CAMPOS GABRIELA ROMINA</option>
+                        <option value="MED22">MAYO CABANILLAS SHAREEN DARCY</option>
+                        <option value="MED23">MOLINA SOCOLA JUAN CARLOS</option>
+                        <option value="MED24">NAMOC LETURIA ALICIA LISSETH</option>
+                        <option value="MED25">RAMÍREZ QUITO SILVIA JACKELINE</option>
+                        <option value="MED26">RAMOS CHAMBILLA CARLOS RUBÉN</option>
+                        <option value="MED27">REYES MEDINA RODOLFO EDMUNDO</option>
+                        <option value="MED28">RIOJA  GARCÍA MIGUEL EDUARDO</option>
+                        <option value="MED29">RIVERA CRUZ OMALY SULAY </option>
+                        <option value="MED30">RODRÍGUEZ RODRÍGUEZ JULIO GABRIEL SEGUNDO</option>
+                        <option value="MED31">ROJAS NOE CARLOS GONZALO</option>
+                        <option value="MED32">ROJAS PEÑA DIANA MARGARITA </option>
+                        <option value="MED33">ROJAS RUIZ JOSÉ ANTONIO</option>
+                        <option value="MED34">SANCHEZ HIDALGO YASMIN GRACIELA</option>
+                        <option value="MED35">SUÁREZ  AVALOS NANCY</option>
+                        <option value="MED36">TANAKA ZENOBIO LUIS ALEXANDER</option>
+                        <option value="MED37">TRUJILLO CASTAÑEDA CARMEN LILIANA</option>
+                        <option value="MED38">VALLEJO ZÁRATE GUILLERMO ALAMIRO</option>
+                        <option value="MED39">VÁSQUEZ GUTIERREZ ALEJANDRO MARK</option>
+                        <option value="MED40">VELÁSQUEZ RUIZ JULIO CÉSAR</option>
+
+                    </select>
+                </div>
+          
+                <div class="form-group col-md-2">
+                    <label for="programadora">Programadora:</label>
+                    <input type="text" class="form-control" id="programadora" name="programadora">
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <label for="observaciones">Observaciones:</label>
+                <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar y Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar Registro</button>
+            <button type="button" onclick="exportarPDF()">Exportar a PDF</button>
+
+        </form>  
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+
+<script>
+
+  function exportarPDF() {
+    const opciones = {
+        margin: 10,
+        filename: 'formulario.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    const formulario = document.getElementById('miFormulario');
+    html2pdf().from(formulario).set(opciones).outputPdf();
+}
+    function buscarPaciente(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+
+        var hcValue = document.getElementById("hc").value;
+
+        console.log("Haciendo solicitud para HC:", hcValue);
+
+        $.ajax({
+            url: "http://150.10.50.7:8000/Historia_SIPA/" + hcValue,
+            type: "GET",
+            success: function (data) {
+                console.log("Datos del paciente obtenidos:", data);
+                document.getElementById("nombres").value = data.IAP + " " + data.IAM + " " + data.INO;
+                document.getElementById("documento").value = data.IDNI;
+                document.getElementById("procedencia").value = data.ILN;
+                document.getElementById("edad").value = data.IFA;
+                document.getElementById("telefono").value = data.ITC;
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al obtener la información del paciente:", error);
+                alert("Error al obtener la información del paciente.");
+            }
+        });
+    }
+}
+
+    function generarSemanas() {
+        var mes = document.getElementById("mes").value;
+        var año = document.getElementById("año").value;
+        document.getElementById("tablaSemanas").innerHTML = "";
+
+        var existeEncabezado = document.getElementById("encabezadoTabla");
+        if (!existeEncabezado) {
+            var encabezado = "<tr id='encabezadoTabla'><th>Semana</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Agregar</th><th>Listar</th></tr>";
+            document.getElementById("tablaSemanas").innerHTML += encabezado;
+        }
+        var numeroSemanas = new Date(año, mes, 0).getDate() / 7;
+        for (var i = 0; i < numeroSemanas; i++) {
+            var fechaInicio = new Date(año, mes - 1, i * 7 + 1);
+            var fechaFin = new Date(año, mes - 1, i * 7 + 7);
+            var inicioFormateado = fechaInicio.toISOString().split('T')[0];
+            var finFormateado = fechaFin.toISOString().split('T')[0];
+
+            var fila = "<tr><td><span class='badge badge-info'>Semana # " + (i + 1) + "</span></td><td>Desde: " + inicioFormateado + "</td><td>Hasta: " + finFormateado + "</td><td></td><td></td></tr>";
+            document.getElementById("tablaSemanas").innerHTML += fila;
+        }
+        var filas = document.getElementById("tablaSemanas").getElementsByTagName("tr");
+        for (var i = 1; i < filas.length; i++) {
+            var celdaAcciones = filas[i].getElementsByTagName("td")[3];
+            var botonAgregar = document.createElement("button");
+            botonAgregar.className = "btn btn-success btn-sm";
+            botonAgregar.innerHTML = '<i class="fas fa-plus"></i> Agregar';
+            botonAgregar.onclick = function() {
+                mostrarModal();
+            };
+            celdaAcciones.appendChild(botonAgregar);
+
+            var celdaListar = filas[i].getElementsByTagName("td")[4];
+            var botonListar = document.createElement("button");
+            botonListar.className = "btn btn-info btn-sm";
+            botonListar.innerHTML = '<i class="fas fa-list"></i> Listar';
+            botonListar.onclick = function() {
+                mostrarRegistros();
+            };
+            celdaListar.appendChild(botonListar);
+        }
+    }
+
+    function mostrarModal() {
+        $('#detalleModal').modal('show');
+    }
+
+    function mostrarRegistros() {
+        console.log("Mostrar Registros");
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

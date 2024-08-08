@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Especialidades</title>
+    <!-- Agregar enlaces a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Lista de Especialidades</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody id="especialidadesTableBody">
+            <!-- Aquí se mostrarán las filas de especialidades -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Agregar enlaces a los scripts de Bootstrap y jQuery (necesario para algunas funciones de Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Agregar tu script personalizado para obtener datos de la API -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Llamada a la API para obtener las especialidades
+        fetch('http://150.10.50.7:8000/especialidades/')
+            .then(response => response.json())
+            .then(data => {
+                // Obtener la referencia a la tabla
+                const tableBody = document.getElementById('especialidadesTableBody');
+
+                // Limpiar el contenido existente en la tabla (si lo hay)
+                tableBody.innerHTML = "";
+
+                // Iterar sobre los datos y agregar filas a la tabla
+                data.forEach(especialidad => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${especialidad.IdEspecialidad}</td>
+                        <td>${especialidad.Nombre}</td>
+                        <td>${especialidad.Estado}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error al obtener datos de la API:', error));
+    });
+</script>
+
+
+
+</body>
+</html>

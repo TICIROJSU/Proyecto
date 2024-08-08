@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="description" content="" />
+      <meta name="author" content="mp" />
+      <title>[SIPA WEB] v1.0</title>
+      <link rel="icon" href="../img/logos-04.png" type="image/png">
+      <!-- Estilos -->
+      <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+      <link href="../css/styles.css" rel="stylesheet" />
+      <!-- Fuentes e Iconos -->
+      <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+      <!-- Bootstrap y Dependencias -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <!-- Moment.js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+      <style>
+         #filtroForm {
+         border: 3px solid #4CAF50; 
+         padding: 20px;
+         border-radius: 10px;
+         }
+         #filtroForm button {
+         margin-top: 0px; 
+         }
+      </style>
+   </head>
+   <body class="sb-nav-fixed">
+      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+         <a class="navbar-brand ps-3" href="#">
+         <img src="../img/logo.jpg" alt="SIPA-WEB" style="width: 150px; height: auto; border-radius: 10px;">
+         </a>
+         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+            </div>
+         </form>
+         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#!">Configuración</a></li>
+                  <li>
+                     <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+               </ul>
+            </li>
+         </ul>
+      </nav>
+      <div id="layoutSidenav">
+         <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #087cfc; color: white;">
+               <div class="sb-sidenav-menu"  style="color: white;"  >
+                  <div class="nav">
+                     <div class="sb-sidenav-menu-heading">Core</div>
+                     <a class="nav-link" href="index.html" style="color: white;">
+                        <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
+                        Dashboard
+                     </a>
+                     <div class="sb-sidenav-menu-heading">SALA DE OPERACIONES</div>
+                     <a class="nav-link collapsed"  style="color: white;"   href="#" data-toggle="collapse" data-target="#collapseCirugias" aria-expanded="false" aria-controls="collapseCirugias">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                        &#160;Cirugías
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseCirugias" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav"  style="color: white;"  >
+                           <a class="nav-link" href="Operaciones/Principal.html"   style="color: white;" >Panel de Control</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Catálogo</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Ambientes</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Tipo de QX</a>
+                           <a class="nav-link" href="../Operaciones/ListadoPaquetes.html"   style="color: white;" >Paquetes</a>
+                           <a class="nav-link" href="../Operaciones/ReporteProgramacion.html"   style="color: white;" >Consultar Consejería</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                           <a class="nav-link" href="../Operaciones/ReporteEjecutadas.html"   style="color: white;" >Reporte Ejecutadas</a>
+                           <a class="nav-link" href="../Operaciones/ReporteProgramados.html"  style="color: white;" >Reporte Programación</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseProcedimientos" aria-expanded="false" aria-controls="collapseProcedimientos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-file-prescription"></i></div>
+                        &#160;Procedimientos
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseProcedimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Avastin</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed" href="#"   style="color: white;"  data-toggle="collapse" data-target="#collapseProgramacion" aria-expanded="false" aria-controls="collapseProgramacion">
+                        <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                        &#160;Programación
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseProgramacion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar </a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte Fecha </a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseLavanderia" aria-expanded="false" aria-controls="collapseLavanderia">
+                        <div class="sb-nav-link-icon"><i class="fas fa-pump-medical"></i></i>
+                        </div>
+                        &#160;Lavandería
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseLavanderia" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar (Kg.)</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte Mensual</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">PERSONAS</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePersonal" aria-expanded="false" aria-controls="collapsePersonal">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
+                        &#160;Personal
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapsePersonal" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Cuerpo Médico</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Enfermería</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Técnicos</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Otros</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">ATENCIONES</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePaciente" aria-expanded="false" aria-controls="collapsePaciente">
+                        <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
+                        &#160;Pacientes
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapsePaciente" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="Pacientes/index.html"   style="color: white;" >Registrar</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Búsqueda</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Historial</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseServicioSocial" aria-expanded="false" aria-controls="collapseServicioSocial">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                        &#160;Servicio Social
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseServicioSocial" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ficha Socio Económica</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">ÓPTICA</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseOptica" aria-expanded="false" aria-controls="collapseOptica">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-glasses"></i></div>
+                        &#160;Módulo de Óptica
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                      <div class="collapse" id="collapseOptica" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="../Optica/index.html"  style="color: white;" >Ingresos / Egresos</a>
+                           <a class="nav-link" href="../Optica/OrdenesTrabajo.html"  style="color: white;" >Órdenes de Trabajo</a>
+                           <a class="nav-link" href="../Optica/Productos.html"  style="color: white;" >Reporte Importes</a>
+                           <a class="nav-link" href="../Optica/Kardex.html"  style="color: white;" >Kardex</a>
+                           <a class="nav-link" href="../Optica/"  style="color: white;" >Proceso de Homologación</a>
+                           <a class="nav-link" href="../Optica/"  style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+               <div class="sb-sidenav-footer">
+                  <div class="small">USUARIO EN LINEA: [MPAZP]</div>
+               </div>
+            </nav>
+         </div>
+         <div id="layoutSidenav_content">
+            <main>
+               <div class="container-fluid px-4">
+                  <BR>
+                  <ol class="breadcrumb mb-4">
+                     <li class="breadcrumb-item active">INGRESOS / EGRESOS ÓPTICA</li>
+                  </ol>
+               </div>
+
+
+               <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+                  <div class="container-fluid px-4">
+                  <br>
+                  <ol class="breadcrumb mb-4" style="background-color: #009AFC;">
+                      <li class="breadcrumb-item active"> <strong style=" color: white;">REPORTE DE PRODUCTOS ÓPTICA</strong> </li>
+                  </ol>
+         
+                  <form id="formulario">
+                     <div class="form-row">
+                      <div class="col-md-10 mb-3">
+                         <label for="producto">Producto:</label>
+                         <input type="text" class="form-control" id="producto" oninput="buscarProductos()">
+                         <div id="resultados"></div>
+                     </div>
+                        <div class="col-md-2 mb-3">
+                           <label for="cantidad">Cantidad:</label>
+                           <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad" required>
+                        </div>
+                     </div>
+                     <button type="button" class="btn btn-primary" onclick="agregarFiltro()"> <i class="fa-brands fa-instalod"> </i> Agregar Filtro</button>
+                  </form>
+                  <div class="mt-3">
+                     <h4>Productos</h4>
+                     <div id="filtros" class="mb-3"></div>
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Producto</th>
+                              <th>Cantidad</th>
+                           </tr>
+                        </thead>
+                        <tbody id="detalle"></tbody>
+                     </table>
+                  </div>
+                  <button type="button" class="btn btn-success" onclick="registrarYAlmacenar()"> <i class="fa-solid fa-arrow-right-to-city"> </i> Adicionar Productos</button>
+              </div>
+               </div>
+
+               <br>
+
+               <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+                    <div class="container-fluid px-4">
+                        <br>
+                        <ol class="breadcrumb mb-4" style="background-color: #009AFC;">
+                            <li class="breadcrumb-item active"> <strong style=" color: white;">ALMACÉN EXTERNO</strong> </li>
+                        </ol>
+
+
+                          <h3 class="mt-5">Entrada de Productos</h3>
+                          <form>
+                           <div class="row">
+                              <div class="col-md-6">
+                                 <div class="mb-3">
+                                     <label for="ordenCompra" class="form-label">Número de Orden de Compra</label>
+                                     <input type="text" class="form-control" id="ordenCompra" placeholder="N° Orden Compra: 202401">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="mb-3">
+                                     <label for="fechaCompra" class="form-label">Fecha de Compra</label>
+                                     <input type="date" class="form-control" id="fechaCompra">
+                                 </div>
+                              </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="productoEntrada" class="form-label">Productos</label>
+                                  <input type="text" class="form-control" id="productoEntrada">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="cantidadEntrada" class="form-label">Cantidad</label>
+                                  <input type="number" class="form-control" id="cantidadEntrada">
+                              </div>
+                              <button type="submit" class="btn btn-primary"> <i class="fa-solid fa-truck-ramp-box"> </i> Ingreso Productos</button>
+                          </form>
+
+                          <hr>
+
+                          <h3 class="mt-5">Salida de Productos</h3>
+                          <form>
+                              <div class="row">
+                              <div class="col-md-6">
+                                 <div class="mb-3">
+                                     <label for="ordenTraslado" class="form-label">Número de Orden de Traslado</label>
+                                     <input type="text" class="form-control" id="ordenTraslado" placeholder="N° Orden Traslado: 20240101">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="mb-3">
+                                     <label for="fechaTraspaso" class="form-label">Fecha de Traslado</label>
+                                     <input type="date" class="form-control" id="fechaTraspaso">
+                                 </div>
+                              </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="productoSalida" class="form-label">Productos</label>
+                                  <input type="text" class="form-control" id="productoSalida">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="cantidadSalida" class="form-label">Cantidad</label>
+                                  <input type="number" class="form-control" id="cantidadSalida">
+                              </div>
+                              <button type="submit" class="btn btn-success"> <i class="fa-solid fa-cart-arrow-down"> </i> Generar Traspaso</button>
+                          </form>
+
+                    </div>
+               </div>
+
+
+             
+
+                <br>
+
+               <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+                    <div class="container-fluid px-4">
+                        <br>
+                        <ol class="breadcrumb mb-4" style="background-color: #009AFC;">
+                            <li class="breadcrumb-item active"> <strong style=" color: white;">ALMACÉN DONACIONES</strong> </li>
+                        </ol>
+                        
+                          <h3 class="mt-5">Entrada de Productos</h3>
+                          <form>
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ordenCompra" class="form-label">Documento Referencia (Guia Remisión - Oficio)</label>
+                                        <input type="text" class="form-control" id="ordenCompra" placeholder="N° de Guia Remisión / N° de Resolución 202401">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="fechaCompra" class="form-label">Fecha de Donación</label>
+                                        <input type="date" class="form-control" id="fechaCompra">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="productoEntrada" class="form-label">Productos</label>
+                                  <input type="text" class="form-control" id="productoEntrada">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="cantidadEntrada" class="form-label">Cantidad</label>
+                                  <input type="number" class="form-control" id="cantidadEntrada">
+                              </div>
+                              <button type="submit" class="btn btn-primary"> <i class="fa-solid fa-cart-flatbed"> </i> Ingreso Productos</button>
+                          </form>
+
+                          <hr>
+
+                          <h3 class="mt-5">Salida de Productos</h3>
+                          <form>
+                              <div class="mb-3">
+                                  <label for="numeroTraslado" class="form-label">Número de Ticket</label>
+                                  <input type="text" class="form-control" id="numeroTraslado" placeholder="N° Ticket de Venta: 0000001">
+                              </div>
+                              <div class="row">
+                              <div class="col-md-6">
+                                      <div class="mb-3">
+                                          <label for="nombreBeneficiario" class="form-label">Nombre del Beneficiario</label>
+                                          <input type="text" class="form-control" id="nombreBeneficiario" placeholder="Juan Perez">
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="mb-3">
+                                          <label for="documentoBeneficiario" class="form-label">Documento del Beneficiario</label>
+                                          <input type="number" class="form-control" id="documentoBeneficiario" placeholder="Documento de Identidad">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="productoSalida" class="form-label">Productos</label>
+                                  <input type="text" class="form-control" id="productoSalida">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="cantidadSalida" class="form-label">Cantidad</label>
+                                  <input type="number" class="form-control" id="cantidadSalida">
+                              </div>
+                              <button type="submit" class="btn btn-success"><i class="fa-solid fa-file-invoice"> </i> Generar Nota de Venta</button>
+                          </form>
+                    </div>
+               </div>
+
+
+
+            </main>
+            <br>
+            <footer class="py-4 bg-light mt-auto">
+               <div class="container-fluid px-4">
+                  <div class="d-flex align-items-center justify-content-between small">
+                     <div class="text-muted">Copyright &copy; [MP] 2024</div>
+                     <div>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+         </div>
+      </div>
+
+
+<script>
+  const filtros = [];
+  let productos = [];
+
+  async function cargarOpciones() {
+    const response = await fetch("http://150.10.50.7:8000/productos");
+    productos = await response.json();
+    const inputProducto = document.getElementById("producto");
+    inputProducto.addEventListener("input", () => buscarProductos());
+  }
+
+  function agregarFiltro() {
+    const inputCantidad = document.getElementById("cantidad");
+    const cantidad = parseInt(inputCantidad.value, 10);
+
+    if (isNaN(cantidad) || cantidad <= 0) {
+      alert("Ingrese una cantidad válida.");
+      return;
+    }
+
+    const inputProducto = document.getElementById("producto");
+    const producto = inputProducto.value;
+
+    if (!producto) {
+      alert("Seleccione un producto de la lista.");
+      return;
+    }
+
+    const filtroExistente = filtros.find(filtro => filtro.producto === producto);
+
+    if (filtroExistente) {
+      filtroExistente.cantidad += cantidad;
+    } else {
+      filtros.push({ producto, cantidad });
+    }
+
+    limpiarFormulario();
+    actualizarFiltros();
+    actualizarDetalle();
+  }
+
+  function limpiarFormulario() {
+    const inputProducto = document.getElementById("producto");
+    const inputCantidad = document.getElementById("cantidad");
+
+    inputProducto.value = "";
+    inputCantidad.value = "";
+    ocultarResultados();
+  }
+
+  function actualizarFiltros() {
+    const filtrosElemento = document.getElementById("filtros");
+    filtrosElemento.innerHTML = "";
+
+    filtros.forEach(filtro => {
+      const filtroElemento = document.createElement("div");
+      filtroElemento.className = "badge badge-info mr-2";
+      filtroElemento.textContent = `${filtro.producto} (${filtro.cantidad})`;
+      filtrosElemento.appendChild(filtroElemento);
+    });
+  }
+
+  async function registrarYAlmacenar() {
+    const response = await fetch("http://150.10.50.7:8000/almacenar-filtros", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(filtros),
+    });
+
+    if (response.ok) {
+      console.log("Datos registrados y almacenados correctamente.");
+      alert("Datos registrados y almacenados correctamente.");
+    } else {
+      console.error("Error al almacenar datos.");
+      alert("Error al almacenar datos.");
+    }
+  }
+
+  function buscarProductos() {
+    const inputProducto = document.getElementById("producto");
+    const query = inputProducto.value.toLowerCase();
+
+    const productosFiltrados = productos.filter(producto => producto.Nombre.toLowerCase().includes(query));
+
+    cargarResultados(productosFiltrados);
+  }
+
+  function cargarResultados(productos) {
+    const resultadosElemento = document.getElementById("resultados");
+    resultadosElemento.innerHTML = "";
+
+    productos.forEach(producto => {
+      const resultadoElemento = document.createElement("div");
+      resultadoElemento.className = "resultado";
+      resultadoElemento.textContent = `${producto.Nombre} - Stock: ${producto.Stock}`;
+      resultadoElemento.setAttribute("data-codigo", producto.Codigo);
+
+      resultadoElemento.addEventListener("click", () => {
+        seleccionarResultado(producto.Nombre);
+      });
+
+      resultadosElemento.appendChild(resultadoElemento);
+    });
+  }
+
+  function ocultarResultados() {
+    const resultadosElemento = document.getElementById("resultados");
+    resultadosElemento.innerHTML = "";
+  }
+
+  function seleccionarResultado(producto) {
+    const inputProducto = document.getElementById("producto");
+    inputProducto.value = producto;
+    ocultarResultados();
+  }
+
+  function actualizarDetalle() {
+    const detalleElemento = document.getElementById("detalle");
+    detalleElemento.innerHTML = "";
+
+    filtros.forEach(filtro => {
+      const fila = document.createElement("tr");
+
+      const celdaProducto = document.createElement("td");
+      celdaProducto.textContent = filtro.producto;
+      fila.appendChild(celdaProducto);
+
+      const celdaCantidad = document.createElement("td");
+      celdaCantidad.textContent = filtro.cantidad;
+      fila.appendChild(celdaCantidad);
+
+      detalleElemento.appendChild(fila);
+    });
+  }
+
+  cargarOpciones();
+</script>
+      <script src="js/main.js"></script>
+      <script src="../js/scripts.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+      <script src="../assets/demo/chart-area-demo.js"></script>
+      <script src="../assets/demo/chart-bar-demo.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+      <script src="../js/datatables-simple-demo.js"></script>
+   </body>
+</html>

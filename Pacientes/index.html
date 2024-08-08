@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="mp" />
+    <title>[SIPA WEB] v1.0</title>
+    <link rel="icon" href="../img/logos-04.png" type="image/png">
+
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+
+    <!-- Fuentes e Iconos -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap y Dependencias -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <style>
+        #filtroForm {
+            border: 3px solid #4CAF50; 
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #filtroForm button {
+            margin-top: 0px; 
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" style="height: 100px;">
+        <a class="navbar-brand ps-6" href="#">
+          <center>
+            <img src="../img/logo.png" alt="SIPA-WEB" style="width: 140px; height:110px;">
+          </center>
+            
+        </a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+
+            </div>
+        </form>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Configuración</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+          <br>
+          <br>
+            <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #087cfc; color: white;">
+                <div class="sb-sidenav-menu"  style="color: white;"  >
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="index.html" style="color: white;">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
+                            Dashboard
+                        </a>
+                        <div class="sb-sidenav-menu-heading">SALA DE OPERACIONES</div>
+
+                        <a class="nav-link collapsed"  style="color: white;"   href="#" data-toggle="collapse" data-target="#collapseCirugias" aria-expanded="false" aria-controls="collapseCirugias">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                            &#160;Cirugías
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseCirugias" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"  style="color: white;"  >
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Catálogo</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Ambientes</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Tipo de QX</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Paquetes</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte Ejecutadas</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseProcedimientos" aria-expanded="false" aria-controls="collapseProcedimientos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-prescription"></i></div>
+                            &#160;Procedimientos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseProcedimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Avastin</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#"   style="color: white;"  data-toggle="collapse" data-target="#collapseProgramacion" aria-expanded="false" aria-controls="collapseProgramacion">
+                            <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                            &#160;Programación
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseProgramacion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar </a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte Fecha </a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseLavanderia" aria-expanded="false" aria-controls="collapseLavanderia">
+                            <div class="sb-nav-link-icon"><i class="fas fa-pump-medical"></i></i>
+                            </div>
+                            &#160;Lavandería
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseLavanderia" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar (Kg.)</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte Mensual</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">PERSONAS</div>
+
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePersonal" aria-expanded="false" aria-controls="collapsePersonal">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
+                            &#160;Personal
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapsePersonal" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Cuerpo Médico</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Enfermería</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Técnicos</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Otros</a>
+                            </nav>
+                        </div>
+
+
+
+                        <div class="sb-sidenav-menu-heading">ATENCIONES</div>
+
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePaciente" aria-expanded="false" aria-controls="collapsePaciente">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
+                            &#160;Pacientes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapsePaciente" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"   style="color: white;" >Registrar</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Búsqueda</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Historial</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseServicioSocial" aria-expanded="false" aria-controls="collapseServicioSocial">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                            &#160;Servicio Social
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseServicioSocial" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ficha Socio Económica</a>
+                            </nav>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">ÓPTICA</div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseOptica" aria-expanded="false" aria-controls="collapseOptica">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-glasses"></i></div>
+                            &#160;Módulo de Óptica
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseOptica" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ingresos / Egresos</a>
+                            </nav>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">USUARIO EN LINEA: [MPAZP]</div>
+
+                </div>
+            </nav>
+
+
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <BR>
+                      <BR>
+                        <BR>
+
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">INGRESO DE NUEVOS PACIENTES</li>
+                    </ol>
+                </div>
+
+                 <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+                    <h4>Filtro de Personas</h4>
+
+                    <form id="filtroForm" class="border" >
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="tipoDocumento"> <strong>Tipo de Documento</strong></label>
+                                <select class="form-control" id="tipoDocumento">
+                                  <option value="DNI">DNI</option>
+                                  <option value="CarnetExtranjeria">Carnet de Extrangeria</option>
+                                  <option value="Pasaporte">Pasaporte</option>
+                                  <option value="Otros">Otros</option>
+                                </select>
+                            </div>
+                        <div class="form-group col-md-4">
+                            <label><strong>N° Documento</strong></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="dni" placeholder="">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onclick="consultarDNI()">
+                                        <i class="fa-regular fa-address-card"> &nbsp;</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                                <label for="apellidoPaterno"> <strong>Apellido Paterno</strong></label>
+                                <input type="text" class="form-control"  placeholder="Ej. Paz" id="f_apellidoPaterno">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="apellidoMaterno"><strong>Apellido Materno</strong></label>
+                                <input type="text" class="form-control"  placeholder="Ej. Porras" id="f_apellidoMaterno">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                 <button type="button" class="btn btn-info btn-block" onclick="filtrar2()">
+                                    <i class="fas fa-search"></i> Filtrar
+                                </button>
+                            </div>
+                        
+                            <div class="form-group col-md-6">
+                                <button type="reset" class="btn btn-warning  btn-block" >
+                                    <i class="fa-regular fa-file"></i> Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+   
+                <!-- Ventana modal para mostrar el Resultado de la búsqueda [MP] -->
+                <div class="modal" tabindex="-1" role="dialog" id="mensajeModal1">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Advertencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p id="mensajeModalTexto"></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Ventana modal para mostrar el Resultado de la búsqueda -->
+
+            <div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true" >
+               <div class="modal-dialog modal-xl" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">Coincidencias por Apellidos [MP]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body" id="modalBody">
+                     </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+               </div>
+            </div>
+
+                 <div class="container mt-3" style="font-size: 15px; max-width: 85%; margin-left: auto; margin-right: auto;">
+                  <h4>Datos del Paciente</h4>
+                  <hr>
+                  <form id="datosPacienteForm">
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="nombre"><strong>Tipo de Documento</strong></label>
+                           <select class="form-control" id="TipoDocumento" required>
+                            <option value="DNI">DNI</option>
+                            <option value="CE">C.E</option>
+                            <option value="Otros">Otros</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="apellido"><strong>N° de Documento</strong></label>
+                        <input type="text" class="form-control" id="nro_Documento" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="apellido"><strong>&nbsp;</strong></label>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="apellido"><strong>N° de Historia Clínica</strong></label>
+                        <input type="text" class="form-control" id="nro_HC" placeholder="" required >
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="nombre"><strong>Nombres</strong></label>
+                        <input type="text" class="form-control" id="nombre" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="apellido"><strong>Apellido Paterno</strong></label>
+                        <input type="text" class="form-control" id="apellidoPaterno" placeholder="" required>
+                      </div>
+                       <div class="form-group col-md-3">
+                        <label for="apellido"><strong>Apellido Materno</strong></label>
+                        <input type="text" class="form-control" id="apellidoMaterno" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="fechaNacimiento"><strong>Fecha de Nacimiento</strong></label>
+                        <input type="date" class="form-control" id="fechaNacimiento" required>
+                      </div>
+                      <div class="form-group col-md-1">
+                        <label for="edadActual"><strong>Edad</strong></label>
+                        <input type="text" class="form-control" id="edadActual" readonly>
+                      </div>
+                    </div>
+
+                     <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="EstadoCivil"><strong>EstadoCivil</strong></label>
+                         <select class="form-control" id="EstadoCivil" required>
+                                <option value="01">SOLTERO(A)</option>
+                                <option value="02">CASADO(A)</option>
+                                <option value="03">VIUDO(A)</option>
+                                <option value="04">DIVORCIADO(A)</option>
+                                <option value="05">CONVIVIENTE</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="nombre"><strong>Genero</strong></label>
+                         <select class="form-control" id="Sexo" required>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="apellido"><strong>Nombre Padre</strong></label>
+                        <input type="text" class="form-control" id="nPadre" placeholder="" required>
+                      </div>
+                       <div class="form-group col-md-3">
+                        <label for="apellido"><strong>Nombre Madre</strong></label>
+                        <input type="text" class="form-control" id="nMadre" placeholder="" required>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                         <label for="tipoSeguro"><strong>Tipo de Seguro</strong></label>
+                      <select class="form-control" id="tipoSeguro" required>
+                        <option value="01">SIN SEGURO</option>
+                        <option value="02">SIS</option>
+                        <option value="03">ESSALUD</option>
+                        <option value="04">MILITAR</option>
+                        <option value="05">SOAT</option>
+                        <option value="06">PRIVADO</option>
+                        <option value="07">OTRO</option>
+                      </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="telefono"><strong>Teléfono</strong></label>
+                        <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el teléfono" required>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="ocupacion"><strong>Ocupación</strong></label>
+                        <input type="text" class="form-control" id="ocupacion" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion"><strong>Dirección</strong></label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
+                     
+                    </div>
+
+                    <div class="form-group">
+                      <label for="antecedentes"><strong>Antecedentes de Enfermedades</strong></label>
+                      <textarea class="form-control" id="antecedentes" rows="3" placeholder="Ingrese los antecedentes"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label><strong>Condiciones Médicas:</strong></label>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="diabetes" name="condiciones[]" value="diabetes">
+                        <label class="form-check-label" for="diabetes">Diabetes</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="glaucoma" name="condiciones[]" value="glaucoma">
+                        <label class="form-check-label" for="glaucoma">Glaucoma</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="hipertension" name="condiciones[]" value="hipertension">
+                        <label class="form-check-label" for="hipertension">Hipertensión</label>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="religion"><strong>Religión</strong></label>
+                        <select class="form-control" id="religion" name="religion" required>
+                            <option value="01" selected>CATOLICO(A)</option>
+                            <option value="02">EVANGELICO(A)</option>
+                            <option value="03">CRISTIANO(A)</option>
+                            <option value="04">TESTIGO DE JEHOVA</option>
+                            <option value="05">MORMON</option>
+                            <option value="06">PROTESTANTE</option>
+                            <option value="07">AGNOSTICO(A)</option>
+                            <option value="08">OTRO</option>
+                            <option value="09">ADVENTISTA</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                         <label for="tipoSangre"><strong>Tipo de Sangre</strong></label>
+                            <select class="form-control" id="tipoSangre" name="tipoSangre" required>
+                                <option value="01">AB+</option>
+                                <option value="02">AB-</option>
+                                <option value="03">A+</option>
+                                <option value="04">A-</option>
+                                <option value="05">B+</option>
+                                <option value="06">B-</option>
+                                <option value="07">O+</option>
+                                <option value="08">O-</option>
+                                <option value="00">NOIN</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="lugarNacimiento"><strong>Lugar de Nacimiento</strong></label>
+                        <input type="text" class="form-control" id="lugarNacimiento" required>
+                      </div>
+                    </div>
+
+                     <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="GradoInstruccion"><strong>Grado de Instrucción</strong></label>
+                        <select class="form-control" id="GradoInstruccion">
+                          <option value="01">Sin Estudios</option>
+                          <option value="02">Primaria</option>
+                          <option value="03">Secundaria</option>
+                          <option value="04">Técnica</option>
+                          <option value="05">Superior</option>
+                          <option value="05">Incial</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="centroEducativo"><strong>Centro Educativo</strong></label>
+                        <input type="text" class="form-control" id="centroEducativo" name="centroEducativo">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="fechaActualizacion"><strong>Fecha Actualización</strong></label>
+                        <input type="text" class="form-control" id="fechaActualizacion" name="fechaActualizacion" required>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                        <label for="nombrePadre"><strong>Acompañante</strong></label>
+                        <input type="text" class="form-control" id="nombrePadre" placeholder="" disabled>
+                      </div>
+
+
+                      <div class="form-group col-md-4">
+                        <label for="parentesco"><strong>Parentesco</strong></label>
+                        <select class="form-control" id="parentesco" disabled>
+                            <option value="01">PADRE</option>
+                            <option value="02">MADRE</option>
+                            <option value="04">HERMANO(A)</option>
+                            <option value="06">PRIMO(A)</option>
+                            <option value="08">ABUELO(A)</option>
+                            <option value="10">NUERO(A)</option>
+                            <option value="11">SUEGRO(A)</option>
+                            <option value="03">HIJO(A)</option>
+                            <option value="05">SOBRINO(A)</option>
+                            <option value="07">TIO(A)</option>
+                            <option value="09">ESPOSO(A)</option>
+                            <option value="15">NIETO(A)</option>
+                            <option value="13">OTRO</option>
+                            <option value="12">CUÑADO(A)</option>
+                            <option value="14" selected>SIN ACOMPAÑANTE</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="telefonoPadre"><strong>N° Documento</strong></label>
+                        <input type="tel" class="form-control" id="telefonoPadre" placeholder="" disabled>
+                      </div>
+                    </div>
+
+                    <div  class="form-row">
+                          <div class="form-group col-md-6">
+                            <button type="button" class="btn btn-success btn-block" id="guardarBtn"  onclick="guardarDatos()"> <i class="fa-regular fa-floppy-disk"></i> Guardar</button>
+                          </div>
+                          <div class="form-group col-md-6">
+                           <button type="reset" class="btn btn-warning btn-block" > <i class="fa-regular fa-file"></i> Limpiar</button>
+                          </div>
+                        
+                    </div>
+
+                       
+                       
+                  </form>
+                  <br>
+                </div>
+
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; [MP] 2024</div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+ <!-- Scripts adicionales para el Cuerpo -->
+    <script src="js/main.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+
+</body>
+</html>

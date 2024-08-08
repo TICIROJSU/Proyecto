@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="mp" />
+    <title>[SIPA WEB] v1.0</title>
+    <link rel="icon" href="../img/logos-04.png" type="image/png">
+
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+
+    <!-- Fuentes e Iconos -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap y Dependencias -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <style>
+        #filtroForm {
+            border: 3px solid #4CAF50; 
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #filtroForm button {
+            margin-top: 0px; 
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+        <a class="navbar-brand ps-3" href="#">
+            <img src="../img/logo.jpg" alt="SIPA-WEB" style="width: 150px; height: auto; border-radius: 10px;">
+        </a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+
+            </div>
+        </form>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Configuración</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+
+            <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #087cfc; color: white;">
+                <div class="sb-sidenav-menu"  style="color: white;"  >
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="index.html" style="color: white;">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
+                            Dashboard
+                        </a>
+                        <div class="sb-sidenav-menu-heading">SALA DE OPERACIONES</div>
+
+                        <a class="nav-link collapsed"  style="color: white;"   href="#" data-toggle="collapse" data-target="#collapseCirugias" aria-expanded="false" aria-controls="collapseCirugias">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                            &#160;Cirugías
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseCirugias" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"  style="color: white;"  >
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Catálogo</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Ambientes</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Tipo de QX</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Paquetes</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseProcedimientos" aria-expanded="false" aria-controls="collapseProcedimientos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-prescription"></i></div>
+                            &#160;Procedimientos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseProcedimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Avastin</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#"   style="color: white;"  data-toggle="collapse" data-target="#collapseProgramacion" aria-expanded="false" aria-controls="collapseProgramacion">
+                            <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                            &#160;Programación
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseProgramacion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar </a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte Fecha </a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseLavanderia" aria-expanded="false" aria-controls="collapseLavanderia">
+                            <div class="sb-nav-link-icon"><i class="fas fa-pump-medical"></i></i>
+                            </div>
+                            &#160;Lavandería
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseLavanderia" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Registrar (Kg.)</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte Mensual</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                            </nav>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">PERSONAS</div>
+
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePersonal" aria-expanded="false" aria-controls="collapsePersonal">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
+                            &#160;Personal
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapsePersonal" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#"   style="color: white;" >Cuerpo Médico</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Enfermería</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Técnicos</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Otros</a>
+                            </nav>
+                        </div>
+
+
+
+                        <div class="sb-sidenav-menu-heading">ATENCIONES</div>
+
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePaciente" aria-expanded="false" aria-controls="collapsePaciente">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
+                            &#160;Pacientes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapsePaciente" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"   style="color: white;" >Registrar</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Búsqueda</a>
+                                <a class="nav-link" href="#"   style="color: white;" >Historial</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseServicioSocial" aria-expanded="false" aria-controls="collapseServicioSocial">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                            &#160;Servicio Social
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseServicioSocial" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ficha Socio Económica</a>
+                            </nav>
+                        </div>
+
+
+                        <div class="sb-sidenav-menu-heading">ÓPTICA</div>
+
+                        <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseOptica" aria-expanded="false" aria-controls="collapseOptica">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-glasses"></i></div>
+                            &#160;Módulo de Óptica
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+
+                        <div class="collapse" id="collapseOptica" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ingresos / Egresos</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">USUARIO EN LINEA: [MPAZP]</div>
+
+                </div>
+            </nav>
+
+
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <BR>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">BÚSQUEDA DE PACIENTES</li>
+                    </ol>
+                </div>
+
+               <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+
+
+                    <form id="filtroForm" class="border" >
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                            <label><strong>N° Historia Clínica</strong></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="dni" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label><strong>N° Documento</strong></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="dni" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                                <label for="apellidoPaterno"> <strong>Apellido Paterno</strong></label>
+                                <input type="text" class="form-control"  placeholder="Ej. Paz" id="f_apellidoPaterno">
+                        </div>
+                        <div class="form-group col-md-3">
+                                <label for="apellidoMaterno"><strong>Apellido Materno</strong></label>
+                                <input type="text" class="form-control"  placeholder="Ej. Porras" id="f_apellidoMaterno">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                 <button type="button" class="btn btn-info btn-block" >
+                                    <i class="fas fa-search"></i> Filtrar
+                                </button>
+                            </div>
+                        
+                            <div class="form-group col-md-6">
+                                <button type="reset" class="btn btn-warning  btn-block" >
+                                    <i class="fa-regular fa-file"></i> Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                  <br>
+
+                <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+                    <div class="card mb-12">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Resultado de Búsqueda
+                            </div>
+                            <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>N° HC</th>
+                                            <th>Paterno</th>
+                                            <th>Materno</th>
+                                            <th>Nombres</th>
+                                            <th>Documento</th>
+                                            <th>Nacimiento</th>
+                                            <th>Dirección</th>
+                                            <th>Celular</th>
+                                            <th>Seguro</th>
+                                            <th>Estado Civil</th>
+                                            <th>Instrucción</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>N° HC</th>
+                                            <th>Paterno</th>
+                                            <th>Materno</th>
+                                            <th>Nombres</th>
+                                            <th>Documento</th>
+                                            <th>Nacimiento</th>
+                                            <th>Dirección</th>
+                                            <th>Celular</th>
+                                            <th>Seguro</th>
+                                            <th>Estado Civil</th>
+                                            <th>Instrucción</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                            <td>61</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                        </tr>
+                                      
+                                        
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+
+                 
+                </div>
+                 <br>
+         
+
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; [MP] 2024</div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+ <!-- Scripts adicionales para el Cuerpo -->
+    <script src="js/main.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+
+
+</body>
+</html>

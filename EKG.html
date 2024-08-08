@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Historia Clínica</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container mt-4">
+    <h5 class="text-center">EVALUACIÓN PRE OPERATORIO EN CIRUGIA NO CARDIACA (RIESGO QUIRÚRGICO  CARDIOLÓGICO) - CONTROL</h5>
+    <br>
+    <hr>
+    <br>
+
+    <!-- Sección 1: Filtro por número de historia clínica -->
+    <div class="card">
+        <div class="card-header" style="background-color: #4CAF50; color: white;" data-toggle="collapse" href="#collapseFiltro" role="button" aria-expanded="false" aria-controls="collapseFiltro">
+            <strong>1.- Filtro de Pacientes</strong>
+        </div>
+        
+        <div id="collapseFiltro" class="collapse">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="numeroHistoria">Número de Historia Clínica</label>
+                            <input type="number" class="form-control" id="numeroHistoria">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="numeroHistoria">&nbsp;</label><br>
+                            <button id="filtrarBtn" class="btn btn-primary btn-block">Filtrar</button>
+                        </div>
+                      
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="resultadosBusqueda" class="mt-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nombres</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
+                                        <th>Edad</th>
+                                        <th>Sexo</th>
+                                        <th>Dirección</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Aquí se insertarán los resultados de la búsqueda -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+    <!-- Sección 2: Motivo de la consulta -->
+    <div class="card mt-3">
+        <div class="card-header" style="background-color: #4CAF50; color: white;" data-toggle="collapse" href="#collapseMotivo" role="button" aria-expanded="false" aria-controls="collapseMotivo">
+            <strong>2.- Motivo de la Consulta</strong> 
+        </div>
+        <div id="collapseMotivo" class="collapse">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="motivoConsulta">Motivo</label>
+                            <select class="form-control" id="motivoConsulta">
+                                <option value="asintomatSico">Asintomático</option>
+                                <option value="sintomatico">Sintomático</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fechaConsulta">Fecha y Hora de la Consulta</label>
+                            <input type="datetime-local" class="form-control" id="fechaConsulta" value="<?php echo date('Y-m-d\TH:i'); ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group d-none" id="explicacionSintomas">
+                            <label for="sintomasDescripcion">Descripción de Síntomas</label>
+                            <textarea class="form-control" id="sintomasDescripcion"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="informacionRelevante">Información Relevante</label>
+                            <textarea class="form-control" id="informacionRelevante"></textarea>
+                        </div>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Sección 3: Funciones Vitales -->
+    <div class="card mt-3">
+        <div class="card-header" style="background-color: #4CAF50; color: white;" data-toggle="collapse" href="#collapseVitales" role="button" aria-expanded="false" aria-controls="collapseVitales">
+            <strong>3.- Funciones Vitales</strong>
+        </div>
+        <div id="collapseVitales" class="collapse">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="presionArterial">Presión Arterial</label>
+                            <input type="text" class="form-control" id="presionArterial" placeholder="______ mmHg">
+                        </div>   
+                    </div>
+                    <div class="col-lg-4">
+                         <div class="form-group">
+                            <label for="pam">PAM</label>
+                            <input type="text" class="form-control" id="pam" placeholder="______ mmHg">
+                        </div>   
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="saturacion">Saturación</label>
+                            <input type="text" class="form-control" id="saturacion" placeholder="_____%">
+                        </div>    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="frecuenciaCardiaca">Frecuencia Cardíaca</label>
+                            <input type="text" class="form-control" id="frecuenciaCardiaca" placeholder="______/min">
+                        </div> 
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="frecuenciaRespiratoria">Frecuencia Respiratoria</label>
+                            <input type="text" class="form-control" id="frecuenciaRespiratoria" placeholder="______/min">
+                        </div>
+                    </div>
+                </div>  
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p> <strong>Evaluación Fisico</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="observacionesExamenFisico">Observaciones del Examen Físico</label>
+                            <textarea class="form-control" id="observacionesExamenFisico"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p> <strong>Laboratorio</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="glucosaBasal">Glucosa Basal</label>
+                            <input type="text" class="form-control" id="glucosaBasal">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label for="otrosExamenes">Otros Exámenes</label>
+                            <input type="text" class="form-control" id="otrosExamenes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Sección 6: Informe del Procedimiento -->
+    <div class="card mt-3">
+        <div class="card-header" style="background-color: #4CAF50; color: white;" data-toggle="collapse" href="#collapseProcedimiento" role="button" aria-expanded="false" aria-controls="collapseProcedimiento">
+            <strong>4.- Informe del Procedimiento</strong>
+        </div>
+        <div id="collapseProcedimiento" class="collapse">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="informeProcedimiento">Informe del Procedimiento</label>
+                            <textarea class="form-control" id="informeProcedimiento"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center"><strong>Clasificación</strong></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="claseLee">Clase LEE</label>
+                            <select class="form-control" id="claseLee">
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="claseGoldman">Clase GOLDMAN</label>
+                            <select class="form-control" id="claseGoldman">
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+<!-- Sección 8: Ingreso de Diagnósticos -->
+<div class="card mt-3">
+    <div class="card-header" style="background-color: #4CAF50; color: white;" data-toggle="collapse" href="#collapseDiagnosticos" role="button" aria-expanded="false" aria-controls="collapseDiagnosticos">
+        <strong>5.- Ingreso de Diagnósticos</strong> 
+    </div>
+    <div id="collapseDiagnosticos" class="collapse">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <label for="condicion">Condición</label>
+                        <select class="form-control" id="condicion">
+                            <option value="apto">Apto para cirugía</option>
+                            <option value="no_apto">No apto para cirugía</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="condicion"> </label><br>
+                        <button id="nuevoDiagnosticoBtn" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#nuevoDiagnosticoModal">Nuevo Diagnóstico</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Descripción de Diagnóstico</th>
+                                <th>Tipo de Diagnóstico</th>
+                                <th>LAB</th>
+                                <th>CIE 10</th>
+                            </tr>
+                        </thead>
+                        <tbody id="diagnosticosTabla">
+                            <!-- Aquí se insertarán los diagnósticos -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <p> <strong>Sugerencias y Recomendaciones</strong> </p>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <textarea class="form-control" id="sugerencias"></textarea>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para Nuevo Diagnóstico -->
+<div class="modal fade" id="nuevoDiagnosticoModal" tabindex="-1" aria-labelledby="nuevoDiagnosticoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nuevoDiagnosticoModalLabel">Nuevo Diagnóstico</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="descripcionDiagnostico">Descripción de Diagnóstico</label>
+                    <textarea class="form-control" id="descripcionDiagnostico"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Diagnóstico</label><br>
+                    <input type="checkbox" id="presuntivo" value="presuntivo"> Presuntivo<br>
+                    <input type="checkbox" id="definitivo" value="definitivo"> Definitivo<br>
+                    <input type="checkbox" id="repetitivo" value="repetitivo"> Repetitivo<br>
+                </div>
+                <div class="form-group">
+                    <label for="lab">LAB</label>
+                    <input type="text" class="form-control" id="lab">
+                </div>
+                <div class="form-group">
+                    <label for="cie10">CIE 10</label>
+                    <input type="text" class="form-control" id="cie10">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button id="agregarDiagnosticoBtn" class="btn btn-primary">Agregar Diagnóstico</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <button id="guardarBtn" class="btn btn-primary">Registrar Evaluación</button>
+            <button id="cancelarBtn" class="btn btn-danger">Cancelar</button>
+        </div>
+    </div>
+</div>      
+    
+
+ 
+
+</div>
+<br>
+<br>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+      $(document).ready(function () {
+        // Mostrar/ocultar formulario de nuevo diagnóstico
+        $('#nuevoDiagnosticoBtn').click(function () {
+            $('#nuevoDiagnosticoModal').modal('show');
+        });
+
+        // Agregar diagnóstico a la tabla
+        $('#agregarDiagnosticoBtn').click(function () {
+            var descripcion = $('#descripcionDiagnostico').val();
+            var tipos = [];
+            if ($('#presuntivo').is(':checked')) tipos.push('Presuntivo');
+            if ($('#definitivo').is(':checked')) tipos.push('Definitivo');
+            if ($('#repetitivo').is(':checked')) tipos.push('Repetitivo');
+            var lab = $('#lab').val();
+            var cie10 = $('#cie10').val();
+
+            var newRow = `<tr>
+                            <td>${descripcion}</td>
+                            <td>${tipos.join(', ')}</td>
+                            <td>${lab}</td>
+                            <td>${cie10}</td>
+                          </tr>`;
+
+            $('#diagnosticosTabla').append(newRow);
+
+            // Limpiar formulario de nuevo diagnóstico
+            $('#descripcionDiagnostico').val('');
+            $('#presuntivo').prop('checked', false);
+            $('#definitivo').prop('checked', false);
+            $('#repetitivo').prop('checked', false);
+            $('#lab').val('');
+            $('#cie10').val('');
+            $('#nuevoDiagnosticoModal').modal('hide');
+        });
+    });
+    $(document).ready(function () {
+        // Mostrar/ocultar textarea basado en el motivo de la consulta
+        $('#motivoConsulta').change(function () {
+            if ($(this).val() === 'sintomatico') {
+                $('#explicacionSintomas').removeClass('d-none');
+            } else {
+                $('#explicacionSintomas').addClass('d-none');
+            }
+        });
+
+        // Funcionalidad para el botón de nuevo diagnóstico
+        $('#nuevoDiagnosticoBtn').click(function () {
+            $('#nuevoDiagnosticoForm').toggleClass('d-none');
+        });
+
+        // Aquí puedes añadir más scripts para manejar la funcionalidad de guardar, filtrar, etc.
+    });
+</script>
+
+</body>
+</html>

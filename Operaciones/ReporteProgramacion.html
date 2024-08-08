@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="mp" />
+    <title>[SIPA WEB] v1.0</title>
+    <link rel="icon" href="../img/logos-04.png" type="image/png">
+
+
+    <!-- Bootstrap y Dependencias -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+
+    <!-- Fuentes e Iconos -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+    <style>
+        #filtroForm {
+            border: 3px solid #4CAF50; 
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #filtroForm button {
+            margin-top: 0px; 
+        }
+    </style>
+</head>
+   <body class="sb-nav-fixed">
+      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+         <a class="navbar-brand ps-3" href="#">
+         <img src="../img/logo.jpg" alt="SIPA-WEB" style="width: 150px; height: auto; border-radius: 10px;">
+         </a>
+         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+            </div>
+         </form>
+         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#!">Configuración</a></li>
+                  <li>
+                     <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+               </ul>
+            </li>
+         </ul>
+      </nav>
+      <div id="layoutSidenav">
+         <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #087cfc; color: white;">
+               <div class="sb-sidenav-menu"  style="color: white;"  >
+                  <div class="nav">
+                     <div class="sb-sidenav-menu-heading">Core</div>
+                     <a class="nav-link" href="index.html" style="color: white;">
+                        <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
+                        Dashboard
+                     </a>
+                     <div class="sb-sidenav-menu-heading">SALA DE OPERACIONES</div>
+                     <a class="nav-link collapsed"  style="color: white;"   href="#" data-toggle="collapse" data-target="#collapseCirugias" aria-expanded="false" aria-controls="collapseCirugias">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                        &#160;Cirugías
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseCirugias" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav"  style="color: white;"  >
+                            <a class="nav-link" href="Principal.html"   style="color: white;" >Panel de Control</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Catálogo</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Ambientes</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Tipo de QX</a>
+                           <a class="nav-link" href="../Operaciones/Paciente_Verificacion.html"   style="color: white;" >Cirugía Segura</a>
+                           <a class="nav-link" href="ListadoPaquetes.html"   style="color: white;" >Paquetes</a>
+                           <a class="nav-link" href="ReporteProgramacion.html"   style="color: white;" >Consultar Consejería</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                           <a class="nav-link" href="ReporteEjecutadas.html"   style="color: white;" >Reporte Ejecutadas</a>
+                           <a class="nav-link" href="ReporteProgramados.html"  style="color: white;" >Reporte Programación</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseProcedimientos" aria-expanded="false" aria-controls="collapseProcedimientos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-file-prescription"></i></div>
+                        &#160;Procedimientos
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseProcedimientos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Avastin</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed" href="#"   style="color: white;"  data-toggle="collapse" data-target="#collapseProgramacion" aria-expanded="false" aria-controls="collapseProgramacion">
+                        <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                        &#160;Programación
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseProgramacion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar </a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte Fecha </a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseLavanderia" aria-expanded="false" aria-controls="collapseLavanderia">
+                        <div class="sb-nav-link-icon"><i class="fas fa-pump-medical"></i></i>
+                        </div>
+                        &#160;Lavandería
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseLavanderia" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Registrar (Kg.)</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte Mensual</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">PERSONAS</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePersonal" aria-expanded="false" aria-controls="collapsePersonal">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
+                        &#160;Personal
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapsePersonal" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="#"   style="color: white;" >Cuerpo Médico</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Enfermería</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Técnicos</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Otros</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">ATENCIONES</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapsePaciente" aria-expanded="false" aria-controls="collapsePaciente">
+                        <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
+                        &#160;Pacientes
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapsePaciente" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="Pacientes/index.html"   style="color: white;" >Registrar</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Búsqueda</a>
+                           <a class="nav-link" href="#"   style="color: white;" >Historial</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseServicioSocial" aria-expanded="false" aria-controls="collapseServicioSocial">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                        &#160;Servicio Social
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseServicioSocial" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="Pacientes/index.html"  style="color: white;" >Ficha Socio Económica</a>
+                        </nav>
+                     </div>
+                     <div class="sb-sidenav-menu-heading">ÓPTICA</div>
+                     <a class="nav-link collapsed"   style="color: white;"  href="#" data-toggle="collapse" data-target="#collapseOptica" aria-expanded="false" aria-controls="collapseOptica">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-glasses"></i></div>
+                        &#160;Módulo de Óptica
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="collapseOptica" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                         <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="../Optica/index.html"  style="color: white;" >Ingresos / Egresos</a>
+                           <a class="nav-link" href="../Optica/OrdenesTrabajo.html"  style="color: white;" >Órdenes de Trabajo</a>
+                           <a class="nav-link" href="../Optica/Productos.html"  style="color: white;" >Reporte Importes</a>
+                           <a class="nav-link" href="../Optica/Kardex.html"  style="color: white;" >Kardex</a>
+                           <a class="nav-link" href="../Optica/"  style="color: white;" >Proceso de Homologación</a>
+                           <a class="nav-link" href="../Optica/"  style="color: white;" >Reporte General</a>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+               <div class="sb-sidenav-footer">
+                  <div class="small">USUARIO EN LINEA: [MPAZP]</div>
+               </div>
+            </nav>
+         </div>
+         <div id="layoutSidenav_content">
+            <main>
+               <div class="container-fluid px-4">
+                  <BR>
+                  <ol class="breadcrumb mb-4">
+                     <li class="breadcrumb-item active">REPORTE DE PROGRAMACIONES DE ENFERMERÍA</li>
+                  </ol>
+               </div>
+               <div class="container mt-3" style="font-size: 12px; max-width: 90%; margin-left: auto; margin-right: auto;">
+
+                    <form id="buscarForm">
+                      <div class="mb-3">
+                        <label for="fichafam" class="form-label">N° de Historia Clínica</label>
+                        <input type="text" class="form-control" id="fichafam" name="fichafam" required>
+                      </div>
+                      <button type="button" class="btn btn-danger" onclick="buscarPacientes()">Buscar</button>
+                    </form>
+
+                    <br>
+                    <br>
+                    <div class="table-responsive">
+                    <table class="table mt-3">
+                        <thead>
+                           <tr>
+                             <th>ID</th>
+                             <th>DIA</th>
+                             <th>MES</th>
+                             <th>AÑO</th>
+                             <th>FICHAFAM</th>
+                             <th>DNI</th>
+                             <th>FINANCIADOR</th>
+                             <th>EDAD</th>
+                             <th>SEXO</th>
+                             <th>ESPECIALIDAD</th>
+                             <th>TD_1</th>
+                             <th>CODI1</th>
+                             <th>DESCRIPCION_1</th>
+                             <th>TD_2</th>
+                             <th>CODI2</th>
+                             <th>DX2</th>
+                             <th>DESCRIPCION_2</th>
+                             <th>TD_3</th>
+                             <th>CODI3</th>
+                             <th>DX3</th>
+                             <th>DESCRIPCION_3</th>
+                             <th>TURNO</th>
+                             <th> </th>
+                           </tr>
+                         </thead>
+                      <tbody id="resultadosTablaBody"></tbody>
+                    </table>
+                    </div>
+               </div>
+            </main>
+            <br>
+            <footer class="py-4 bg-light mt-auto">
+               <div class="container-fluid px-4">
+                  <div class="d-flex align-items-center justify-content-between small">
+                     <div class="text-muted">Copyright &copy; [MP] 2024</div>
+                     <div>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+         </div>
+      </div>
+      
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nombres = [
+        "ACOSTA PRETEL ROBERTH ISAAC",
+        "BARBA CHIRINOS CARLOS ENRIQUE",
+        // ... (resto de los nombres)
+        "TANAKA ZENOBIO LUIS ALEXANDER"
+      ];
+
+ 
+      const cmbNombres = document.getElementById('cmbNombres');
+
+      cmbNombres.innerHTML += nombres.map(nombre => `<option>${nombre}</option>`).join('');
+
+
+      console.log("Options generated:", nombres);
+      console.log("Selected option:", cmbNombres.value);
+    });
+  </script>
+
+
+<script>
+
+  function buscarPacientes() {
+    const fichafam = document.getElementById('fichafam').value;
+    fetch(`http://150.10.50.7:8000/paciente_progamacion?ficha_fam=${fichafam}`)
+      .then(response => response.json())
+      .then(data => mostrarResultados(data.result))
+      .catch(error => console.error('Error:', error));
+  }
+
+
+  function mostrarResultados(resultados) {
+    const tablaBody = document.getElementById('resultadosTablaBody');
+    tablaBody.innerHTML = ''; 
+
+    resultados.forEach(resultado => {
+      const fila = document.createElement('tr');
+      fila.innerHTML = `
+        <td>${resultado.ID}</td>
+        <td>${resultado.DIA}</td>
+        <td>${resultado.MES}</td>
+        <td>${resultado.AÑO}</td>
+        <td>${resultado.FICHAFAM}</td>
+        <td>${resultado.DNI}</td>
+        <td>${resultado.FINANCIADOR}</td>
+        <td>${resultado.EDAD}</td>
+        <td>${resultado.SEXO}</td>
+        <td>${resultado.ESPECIALIDAD}</td>
+        <td>${resultado.TD_1}</td>
+        <td>${resultado.CODI1}</td>
+        <td>${resultado.DESCRIPCION_1}</td>
+        <td>${resultado.TD_2}</td>
+        <td>${resultado.CODI2}</td>
+        <td>${resultado.DX2}</td>
+        <td>${resultado.DESCRIPCION_2}</td>
+        <td>${resultado.TD_3}</td>
+        <td>${resultado.CODI3}</td>
+        <td>${resultado.DX3}</td>
+        <td>${resultado.DESCRIPCION_3}</td>
+        <td>${resultado.TURNO}</td>
+        <td>
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+           <i class="fa-regular fa-folder-open"></i>
+            </button>
+        </td>
+        `;
+         tablaBody.appendChild(fila);
+
+         const modal = document.createElement('div');
+
+         modal.innerHTML = `
+           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SOLICITUD DE OPERACIÓN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="formularioPaciente">
+                          <div class="form-row">
+                              <div class="form-group col-md-3">
+                                  <label for="historiaClinica">N° de Historia Clínica</label>
+                                  <input type="text" class="form-control" id="historiaClinica" name="historiaClinica" readonly value="259971">
+                              </div>
+                              <div class="form-group col-md-3">
+                                  <label for="apellidoPaterno">Apellido Paterno</label>
+                                  <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" readonly value="MARCELO">
+                              </div>
+                              <div class="form-group col-md-3">
+                                  <label for="apellidoMaterno">Apellido Materno</label>
+                                  <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" readonly value="HARO">
+                              </div>
+                               <div class="form-group col-md-3">
+                                  <label for="nombres">Nombres</label>
+                                  <input type="text" class="form-control" id="nombres" name="nombres" readonly value="ANGELITA GENOVEVA">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                             
+                              <div class="form-group col-md-4">
+                                  <label for="edad">Edad</label>
+                                  <input type="text" class="form-control" id="edad" name="edad" readonly value="60 AÑOS">
+                              </div>
+                                <div class="form-group col-md-4">
+                                  <label for="sexo">Sexo</label>
+                                  <input type="text" class="form-control" id="sexo" name="sexo" readonly value="F">
+                              </div>
+                              <div class="form-group col-md-4">
+                                  <label for="tipoAnestesia">Tipo de Anestesia</label>
+                                  <select class="form-control" id="tipoAnestesia" name="tipoAnestesia">
+                                      <option value="01">LOCAL</option>
+                                      <option value="02">SEDACIÓN</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                         
+                          <div class="form-row">
+                              <div class="form-group col-md-4">
+                                  <label for="financiador">Financiador</label>
+                                  <select class="form-control" id="financiador" name="financiador">
+                                      <option value="01">COMUN</option>
+                                      <option value="02">SIS</option>
+                                      <option value="03">PARTICULAR</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4">
+                                  <label for="fechaCirugia">Fecha de Cirugía</label>
+                                  <input type="date" class="form-control" id="fechaCirugia" name="fechaCirugia">
+                              </div>
+                               <div class="form-group col-md-4">
+                                  <label for="horaCirugia">Hora de Cirugía</label>
+                                  <input type="time" class="form-control" id="horaCirugia" name="horaCirugia">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-12">
+                                  <label for="diagnostico">Diagnóstico</label>
+                                  <select class="form-control" id="diagnostico" name="diagnostico">
+                                      <option value="H259">CATARATA SENIL NO ESPECIFICADA</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                            <div class="form-row">
+                              <div class="form-group col-md-10">
+                                  <label for="operacionProgramada">Operación Programada</label>
+                                  <select class="form-control" id="operacionProgramada" name="operacionProgramada">
+                                      <!-- Agrega las opciones para la operación programada -->
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <label for="lio">LIO (Ingresar decimal)</label>
+                                  <input type="number" step="0.1" class="form-control" id="lio" name="lio">
+                              </div>
+                          </div>
+
+
+                          <div class="form-row">
+                              <div class="form-group col-md-4">
+                                  <label for="docente">Docente</label>
+                                  <select class="form-control" id="docente" name="docente">
+                                      <!-- Agrega las opciones para el docente -->
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4">
+                                  <label for="cirujano">Cirujano</label>
+                                  <select class="form-control" id="cirujano" name="cirujano">
+                                      <!-- Agrega las opciones para el cirujano -->
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4">
+                                  <label for="residente">Residente</label>
+                                  <select class="form-control" id="residente" name="residente">
+                                      <!-- Agrega las opciones para el residente -->
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              
+                              <div class="form-group col-md-12">
+                                  <label for="cmbNombres">Médico Solicitante</label>
+                                   <select class="form-control" id="cmbNombres">
+                                  
+                                    <option value="" selected>Selecciona...</option>
+                                  </select>
+                              </div>
+                          </div> 
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success">Registrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+                `;
+            document.body.appendChild(modal);
+               
+            });
+        }
+
+
+        function llenarFormulario(resultado) {
+                document.getElementById('historiaClinica').value = resultado.FICHAFAM;
+                document.getElementById('apellidoPaterno').value = resultado.ApellidoPaterno;
+                document.getElementById('apellidoMaterno').value = resultado.ApellidoMaterno;
+                document.getElementById('nombres').value = resultado.Nombres;
+                document.getElementById('edad').value = resultado.EDAD;
+                document.getElementById('sexo').value = resultado.SEXO;
+            }
+    </script>
+
+      <div class="container mt-4">
+    <label for="cmbNombres">Selecciona un nombre:</label>
+    <select class="form-control" id="cmbNombres">
+      <!-- Opción predeterminada -->
+      <option value="" selected>Selecciona...</option>
+    </select>
+  </div>
+
+
+
+
+
+      <script src="js/main.js"></script>
+      <script src="../js/scripts.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+      <script src="../assets/demo/chart-area-demo.js"></script>
+      <script src="../assets/demo/chart-bar-demo.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+      <script src="../js/datatables-simple-demo.js"></script>
+
+
+   </body>
+</html>
